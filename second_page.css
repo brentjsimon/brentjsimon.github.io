@@ -1,0 +1,29 @@
+@import "compass/css3";
+
+*{
+    cursor: url(http://cur.cursors-4u.net/food/foo-5/foo441.cur), progress !important;
+    text-align: center;
+}
+
+
+html {
+    background: #fce3e6;
+        background-image: url(https://i.imgur.com/Q60GguD.png); 
+    -webkit-font-smoothing: antialiased;
+    
+}
+
+body {
+    background: #fff;
+    box-shadow: 0 0 150px rgba(252,180, 180, 1);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 2px;
+    margin: 0 auto;
+    max-width: 850px;
+    padding: 2em 2em 4em;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    
+}
