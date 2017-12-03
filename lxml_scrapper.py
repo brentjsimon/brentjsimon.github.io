@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  1 19:26:29 2017
 
-@author: Simon
+@author: Simon 
 """
 
 #!/usr/bin/env python3

@@ -1,6 +1,6 @@
-# Project Title
+# Project: Baby Tomatoes
 
-One Paragraph of project description goes here
+This is a web application source file that utilizes web scrapping algorithm to fetch product data from a website. This interface uses html, css and python. 
 
 ## Getting Started
 
