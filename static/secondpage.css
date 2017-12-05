@@ -2,7 +2,6 @@
 
 *{
     cursor: url(http://cur.cursors-4u.net/food/foo-5/foo441.cur), progress !important;
-    text-align: center;
 }
 
 
@@ -26,4 +25,15 @@ body {
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     
+}
+
+div.product {
+    border: 1px solid black;
+    padding: auto;
+    line-height: 20px;
+
+}
+a:hover, a:active, a:visited, a:link{
+    text-decoration: none;
+    color: black;
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='secondpage.css')}}">
+    
+    </head>
+    
+    <body>
+
+<!--     	<form action = "file_name.py" method = "POST">
+   		<input type = "submit" value = "Run the Program!!!"></form> -->
+         <a href="/"><font size="18">Choose your Search</font></a>
+        
+        
+        
+        
+      <p></p>  
+    <!-- <div id="option selection" value="placeholder">Please select from the following options:</div> -->
+    <div id="option selection" value="placeholder">
+    <form method="POST">
+        <input type="hidden" name="item" value={{item}}>
+        <select name="sort">
+           <!--  <option value="placeholder">Please select from the following options: </option> -->
+            <option value="default">Name: Default</option>
+            <option value="alphabetically" {{alphabetically}}>Name: Alphabetically</option>
+            <option value="ascending" {{ascending}}>Price: Low to High</option>
+            <option value="descending" {{descending}}>Price: High to Low</option> 
+        </select>
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+        {% for i in range(n) %}
+        <div class="product">
+            <a href="{{arr_link[i]}}">Title: {{arr_title[i]}}<br /></a>
+            Price: ${{arr_price[i]}}<br />
+            Location: {{arr_location[i]}}<br />
+            URL: {{arr_link[i]}}<br />
+            <br />
+        </div>
+        {% endfor %}
+        <ul>
+        <!-- Interprets forloop Code Below as PYTHON or Flask 
+        	{% for item in arr_title%}
+        	<li>{{ item }}</li>
+
+        	{% endfor %}-->
+        </ul>
+    </body>
+</html>
