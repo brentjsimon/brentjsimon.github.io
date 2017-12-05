@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Dec  1 19:26:29 2017
-
-@author: Simon 
-"""
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Nov 29 17:38:45 2017
 
-@author: NicholasKaiser
+@author: NicholasKaiser & BrentSimon
 """
 
 import re
@@ -19,6 +12,12 @@ from lxml import html, etree
 import csv, os, json
 from requests import get
 from time import sleep
+
+# Flask implementation by Brent Simon
+from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
 
 
 # Method to do Radix Sort
@@ -158,11 +157,12 @@ def lex_sort(arr_title, arr_price, arr_location, arr_link):
     while i < n-1:
         j = i+1
         while j < n:
+                #Nonpucutuated Array
             if arr_copy[i] > arr_copy[j]:
                 temp_copy = arr_copy[i]
                 arr_copy[i] = arr_copy[j]
                 arr_copy[j] = temp_copy
-                
+                #Has Punctuation
                 temp_title = arr_title[i]
                 arr_title[i] = arr_title[j]
                 arr_title[j] = temp_title
@@ -183,7 +183,7 @@ def lex_sort(arr_title, arr_price, arr_location, arr_link):
 
 
 def remove_punc(arr):
-    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+    punctuations = '''!()-[]{};:'"\,<>./?@ #$%^&*_~'''
     n = len(arr)
     i = 0
     while i < n:
@@ -206,72 +206,101 @@ def print_data(arr_title, arr_link, arr_price, arr_location):
         
         
 ####################MAIN CODE####################
-arr_title = []
-arr_link = []
-arr_price = []
-arr_location = []
+#MAIN Function to be used by USER
 
-query = input("Please enter your search parameter: ")
-print ("You entered: ",query)
 
-url = "https://sfbay.craigslist.org/search/sss?query=" + str(query) + "&sort=rel"
-print ("Your search url: ",url)
-print("")
-body = get(url)
-doc = html.fromstring(body.content)
 
-#print(doc.xpath('//img/@src'))
-for product in doc.xpath('//*[@id="sortable-results"]/ul/li'):
-    raw_title = product.xpath('p/a/text()')
-    raw_link = product.xpath('a/@href')
-    raw_price = product.xpath('p/span/span[@class="result-price"]/text()')
-    raw_location = product.xpath('p/span/span[@class="result-hood"]/text()')
+#query = input("Please enter your search parameter: ")
+# query = pie
+# print ("You entered: ",query)
 
-    title = raw_title[0] if raw_title else None
-    link = raw_link[0] if raw_link else None
-    price = eval(raw_price[0][1:]) if raw_price else 0
-    location = raw_location[0] if raw_location else None
-    
-    arr_title.append(title)
-    arr_link.append(link)
-    arr_price.append(price)
-    arr_location.append(location)
-    #prints out AFTER webscrape is called [RAW]
-    print_data(arr_title, arr_link, arr_price, arr_location)
+def search(url):
+    arr_title = []
+    arr_link = []
+    arr_price = []
+    arr_location = []
+    print ("Your search url: ", url)
+    print("")
+    body = get(url)
+    doc = html.fromstring(body.content)
 
-option = 0
-while option != 4:
-    print ("Please select from the following options: ")
-    print ("1) Sort search results by price: low to high")
-    print ("2) Sort search results by price: high to low")
-    print ("3) Sort search results by location")
-    print ("4) Exit program")
-    print ("")
-    option = input("")
-    print ("You entered option: ",option)
-    print ("")
+    #print(doc.xpath('//img/@src'))
+    for product in doc.xpath('//*[@id="sortable-results"]/ul/li'):
+        raw_title = product.xpath('p/a/text()')
+        raw_link = product.xpath('a/@href')
+        raw_price = product.xpath('p/span/span[@class="result-price"]/text()')
+        raw_location = product.xpath('p/span/span[@class="result-hood"]/text()')
 
-    if option == "1":
-        radixSort(arr_title,arr_link,arr_price,arr_location)
-        print_data(arr_title, arr_link, arr_price, arr_location)
+        title = raw_title[0] if raw_title else None
+        link = raw_link[0] if raw_link else None
+        price = eval(raw_price[0][1:]) if raw_price else 0
+        location = raw_location[0] if raw_location else None
         
-    elif option == "2":
-        n = len(arr_price)
-        quickSort(arr_title,arr_link,arr_price,arr_location,0,n-1)
-        arr_title.reverse()
-        arr_link.reverse()
-        arr_price.reverse()
-        arr_location.reverse()
-        print_data(arr_title, arr_link, arr_price, arr_location)
+        arr_title.append(title)
+        arr_link.append(link)
+        arr_price.append(price)
+        arr_location.append(location) 
+    return arr_title, arr_link, arr_price, arr_location
 
-    elif option == "3":
-        lex_sort(arr_title, arr_price, arr_location, arr_link)
-        print_data(arr_title, arr_link, arr_price, arr_location)
+# url = "https://sfbay.craigslist.org/search/sss?query=pie&sort=rel"
+# print ("Your search url: ",url)
+# print("")
+# body = get(url)
+# doc = html.fromstring(body.content)
 
-    elif option == "4":
-        print ("Exiting program...")
-        break
+# #print(doc.xpath('//img/@src'))
+# for product in doc.xpath('//*[@id="sortable-results"]/ul/li'):
+#     raw_title = product.xpath('p/a/text()')
+#     raw_link = product.xpath('a/@href')
+#     raw_price = product.xpath('p/span/span[@class="result-price"]/text()')
+#     raw_location = product.xpath('p/span/span[@class="result-hood"]/text()')
 
-    else:
-        print("Please select a valid option")
-        print("")  
+#     title = raw_title[0] if raw_title else None
+#     link = raw_link[0] if raw_link else None
+#     price = eval(raw_price[0][1:]) if raw_price else 0
+#     location = raw_location[0] if raw_location else None
+    
+#     arr_title.append(title)
+#     arr_link.append(link)
+#     arr_price.append(price)
+#     arr_location.append(location)
+#     #prints out AFTER webscrape is called [RAW]
+# print_data(arr_title, arr_link, arr_price, arr_location)
+
+# option = 0
+# while option != 4:
+#     print ("Please select from the following options: ")
+#     print ("1) Sort search results by price: low to high")
+#     print ("2) Sort search results by price: high to low")
+#     print ("3) Sort search results by location")
+#     print ("4) Exit program")
+#     print ("")
+#     option = input("")
+#     print ("You entered option: ",option)
+#     print ("")
+
+#     if option == "1":
+#         radixSort(arr_title,arr_link,arr_price,arr_location)
+#         print_data(arr_title, arr_link, arr_price, arr_location)
+        
+#     elif option == "2":
+#         n = len(arr_price)
+#         quickSort(arr_title,arr_link,arr_price,arr_location,0,n-1)
+#         arr_title.reverse()
+#         arr_link.reverse()
+#         arr_price.reverse()
+#         arr_location.reverse()
+#         print_data(arr_title, arr_link, arr_price, arr_location)
+
+#     elif option == "3":
+#         lex_sort(arr_title, arr_price, arr_location, arr_link)
+#         print_data(arr_title, arr_link, arr_price, arr_location)
+
+#     elif option == "4":
+#         print ("Exiting program...")
+#         break
+
+#     else:
+#         print("Please select a valid option")
+#         print("")  
+
