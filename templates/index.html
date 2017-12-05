@@ -3,7 +3,9 @@
     <head>
         <!-- page to return results on secondpage.html -->
         <!-- changed babytomato_home to index -->
-        <link rel="stylesheet" href="index.css"> 
+        <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}"> 
+
+        
     
     </head>
     
@@ -16,11 +18,11 @@
         
         <div class="flexsearch">
 		<div class="flexsearch--wrapper">
-			<form class="flexsearch--form" action="secondpage.html" method="POST">
+			<form class="flexsearch--form" name="text" method="POST">
 				<div class="flexsearch--input-wrapper">
 
 					<!-- user can press 'enter' to go next page -->
-					<input class="flexsearch--input" type="search" placeholder="search">
+					<input class="flexsearch--input" name="item" type="search" placeholder="search">
 
 					<!-- fake button search -->
   					<!--                   <a href="secondpage.html" input class="flexsearch--submit"  type="submit" value="&#10140";/> 
@@ -58,14 +60,14 @@
             <option value="placeholder">Choose a Price</option>
             <option value="price1">$</option>
             <option value="price2">$$</option>
-            <option value="price3">$$$</option>  -->
-
+            <option value="price3">$$$</option> 
 
 
         </select>
         
         </form>
-    </div>
+    </div> -->
+
 
 
         

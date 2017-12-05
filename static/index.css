@@ -1,0 +1,151 @@
+@import "compass/css3";
+
+*{
+    cursor: url(http://cur.cursors-4u.net/food/foo-5/foo441.cur), progress !important;
+    text-align: center;
+}
+
+
+html {
+    background: #fce3e6;
+        background-image: url(https://i.imgur.com/Q60GguD.png); 
+    -webkit-font-smoothing: antialiased;
+    
+}
+
+body {
+    background: #fff;
+    box-shadow: 0 0 150px rgba(252,180, 180, 1);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 2px;
+    margin: 0 auto;
+    max-width: 850px;
+    padding: 2em 2em 4em;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    
+}
+
+
+
+/***********************
+ * Essential Structure *
+ ***********************/
+.flexsearch--wrapper {
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	overflow: hidden;
+	background: transparent;
+	margin: 0;
+	position: static;
+}
+	
+.flexsearch--form {
+	overflow: hidden;
+	position: relative;
+}
+	
+.flexsearch--input-wrapper {
+	padding: 0 66px 0 0; /* Right padding for submit button width */
+	overflow: hidden;
+    
+}
+
+.flexsearch--input {
+    width: 100%;
+}
+
+/***********************
+ * Configurable Styles *
+ ***********************/
+.flexsearch {
+    padding: 0 100px 0  100px; /* Padding for other horizontal elements */
+}
+
+.flexsearch--input {
+  -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+ 	height: 60px;
+  padding: 0 46px 0 10px;
+	border-color: #888;
+  border-radius: 25px; 
+  border-style: solid;
+	border-width: 5px;
+  margin-top: 15px;
+  color: #333;
+  font-family: 'Helvetica', sans-serif;
+    text-align: left;
+	font-size: 26px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+	
+.flexsearch--submit {
+  position: absolute;
+    text-indent: -4px;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 60px;
+	height: 60px;
+  padding-right: ;
+  border: none;
+	margin-top: 20px; /* margin-top + border-width */
+  margin-left: 5px; /* border-width */
+	background: transparent;
+  color: #888;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.flexsearch--input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.flexsearch--input:focus.flexsearch--submit {
+ 	color: #333; 
+}
+
+.flexsearch--submit:hover {
+  color: #333;
+}
+
+::-webkit-input-placeholder {
+	color: #888;  
+}
+
+input:-moz-placeholder {
+  color: #888
+}
+
+
+/****************
+ * Pretify demo *
+ ****************/
+.h1 {
+  float: left;
+  margin: 25px;
+  color: #333;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 45px;
+  text-align: left;
+}
+
+select{
+  border-radius: 10px;
+  height: 30px;
+  width: 160px;  
+    border: 3px solid #888;
+    color: #888;
+}
+select:focus{
+    border: 3px solid #333;
+}
