@@ -9,16 +9,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Deployment
 
-Step 1: Download Python3.6 & install development environment for your terminal
+* Step 1: Download Python3.6 & install the following python development environment for your terminal:
 	1. pip 
 	2. virtualenv
 	3. git
-Step 2: Pull from repository - https://github.com/brentjsimon/brentjsimon.github.io
-Step 3: Open terminal using cmd on 'run program' and change your directory to where you stored the repository to your local drive and then type 'testpython.py'
-Step 4: Open up any browser and type "localhost:5000"
-Step 5: Enter an item you wish to search
-Step 6: Select a sort value. 
-Step 7: Done
+* Step 2: Pull from repository - https://github.com/brentjsimon/brentjsimon.github.io
+* Step 3: Open terminal using cmd on 'run program' and change your directory to where you stored the repository to your local drive and then type 'testpython.py'
+* Step 4: Open up any browser and type "localhost:5000"
+* Step 5: Enter an item you wish to search
+* Step 6: Select a sort value. 
+* Step 7: Done
 
 ## Built With
 
@@ -27,7 +27,7 @@ Step 7: Done
 
 ## Authors
 
-* **Nicholas Kaiser** - *BackEnd Developer 
+* **Nicholas Kaiser** - *BackEnd Developer* 
 * **Tenwie Peng** - *FrontEnd Developer* 
 * **Brent Simon** - *Linked FrontEnd & Backend Together*
 
