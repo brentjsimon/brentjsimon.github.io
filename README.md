@@ -14,11 +14,12 @@ These instructions will get you a copy of the project up and running on your loc
 	2. virtualenv
 	3. git
 * Step 2: Pull from repository - https://github.com/brentjsimon/brentjsimon.github.io
-* Step 3: Open terminal using cmd on 'run program' and change your directory to where you stored the repository to your local drive and then type 'testpython.py'
-* Step 4: Open up any browser and type "localhost:5000"
-* Step 5: Enter an item you wish to search
-* Step 6: Select a sort value. 
-* Step 7: Done
+* Step 3: Open terminal through your Start Menu click Run and type 'cmd' to open up command prompt 
+* Step 4: Change your directory to where you stored the repository to your local drive using 'cd "tab"'and then type 'testpython.py'
+* Step 5: Open up any browser and type "localhost:5000"
+* Step 6: Enter an item you wish to search and press enter
+* Step 7: Select a Sortparameter 
+* Step 8: Done
 
 ## Built With
 
