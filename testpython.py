@@ -4,15 +4,33 @@ Created on Sun Dec  2 08:36:02 2017
 
 @author: Simon
 """
-from lxml_scrapper import *
+# from lxml_scrapper import *
+from test_scrapper import *
 from flask import Flask, render_template, request, url_for
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if request.method == 'POST':
 		item = request.form['item'].replace(" ", "+")
+		arr_title = []
+		arr_link = []
+		arr_price = []
+		arr_location = []
 		url = "https://sfbay.craigslist.org/search/sss?query=" + item + "&sort=rel"
-		arr_title, arr_link, arr_price, arr_location = search(url)
+		temp_title, temp_link, temp_price, temp_location = craigs_search(url)
+		arr_title += temp_title
+		arr_link += temp_link
+		arr_price += temp_price
+		arr_location += temp_location
+
+		url = "https://www.peerhub.com/?filter=marketplace&top=good&q=" + item
+		temp_title, temp_link, temp_price, temp_location = peer_search(url)
+		arr_title += temp_title
+		arr_link += temp_link
+		arr_price += temp_price
+		arr_location += temp_location
+
+		remove_punc(arr_title)
 		n = len(arr_title)
 		alphabetically = None
 		ascending = None	
@@ -23,7 +41,7 @@ def index():
 
 
 		elif request.form.get("sort") == 'ascending':
-			radixSort(arr_title,arr_link,arr_price,arr_location)
+			insertionSort(arr_title, arr_price, arr_location, arr_link)
 			ascending = "selected"
 
 
