@@ -33,7 +33,7 @@
         {% for i in range(n) %}
         <div class="product">
             <a href="{{arr_link[i]}}">Title: {{arr_title[i]}}<br /></a>
-            Price: ${{arr_price[i]}}<br />
+            Price: ${{"{:.2f}".format(arr_price[i])}}<br />
             Location: {{arr_location[i]}}<br />
             URL: {{arr_link[i]}}<br />
             <br />
