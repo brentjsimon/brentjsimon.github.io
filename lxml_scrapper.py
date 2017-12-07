@@ -19,6 +19,33 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 
+# Function to do insertion sort
+def insertionSort(arr_title, arr_price, arr_location, arr_link):
+ 
+    # Traverse through 1 to len(arr)
+    for i in range(1, len(arr_price)):
+ 
+        key_title = arr_title[i]
+        key = arr_price[i]
+        key_location = arr_location[i]
+        key_link = arr_link[i]
+ 
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
+        j = i-1
+        while j >=0 and key < arr_price[j] :
+                arr_title[j+1] = arr_title[j]
+                arr_price[j+1] = arr_price[j]
+                arr_location[j+1] = arr_location[j]
+                arr_link[j+1] = arr_link[j]
+                j -= 1
+        arr_title[j+1] = key_title
+        arr_price[j+1] = key
+        arr_location[j+1] = key_location
+        arr_link[j+1] = key_link
+
+
 
 # Method to do Radix Sort
 def radixSort(arr_title,arr_link,arr_price,arr_location):
@@ -203,7 +230,8 @@ def print_data(arr_title, arr_link, arr_price, arr_location):
         print("Location: ",arr_location[i])
         print("URL: ",arr_link[i])
         print("")
-        
+
+
         
 ####################MAIN CODE####################
 #MAIN Function to be used by USER
@@ -214,11 +242,44 @@ def print_data(arr_title, arr_link, arr_price, arr_location):
 # query = pie
 # print ("You entered: ",query)
 
-def search(url):
+
+def peer_search(url):
     arr_title = []
     arr_link = []
     arr_price = []
     arr_location = []
+    # url = "https://www.peerhub.com/?filter=marketplace&top=good&q=" + str(query)
+    print ("Your search url: ", url)
+    print("")
+    body = get(url)
+    doc = html.fromstring(body.content)
+
+    for product in doc.xpath('/html/body/div/div/div/div/div/div/div/div/ul/li'):#for craigslist: //*[@id="sortable-results"]/ul/li
+        raw_title = product.xpath('a/div/div[@class="title"]/text()')#p/a/text()
+        raw_link = product.xpath('a/@href')#a/@href
+        raw_price = product.xpath('a/div/div[@class="price"]/text()')#p/span/span[@class="result-price"]/text()
+        raw_location = product.xpath('a/div/div[@class="location"]/text()')#p/span/span[@class="result-hood"]/text()
+
+        title = raw_title[0] if raw_title else None
+        link = "https://www.peerhub.com" + raw_link[0] if raw_link else None
+        price = eval(raw_price[0][1:]) if raw_price else 0
+        location = raw_location[0] if raw_location else None
+        
+        arr_title.append(title)
+        arr_link.append(link)
+        arr_price.append(price)
+        arr_location.append(location)
+    return arr_title, arr_link, arr_price, arr_location
+    
+    #print_data(arr_title, arr_link, arr_price, arr_location)
+
+
+def craigs_search(url):
+    arr_title = []
+    arr_link = []
+    arr_price = []
+    arr_location = []
+    #url = "https://sfbay.craigslist.org/search/sss?query=" + str(query) + "&sort=rel"
     print ("Your search url: ", url)
     print("")
     body = get(url)
