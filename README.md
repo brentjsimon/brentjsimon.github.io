@@ -13,6 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 	1. pip 
 	2. virtualenv
 	3. git
+* Note after installation, set your PATH Variables with Python36 and Pytho36/Scripts
 * Step 2: Pull from repository - https://github.com/brentjsimon/brentjsimon.github.io
 * Step 3: Open terminal through your Start Menu click Run and type 'cmd' to open up command prompt 
 * Step 4: Change your directory to where you stored the repository to your local drive using 'cd "tab"'and then type 'testpython.py'
