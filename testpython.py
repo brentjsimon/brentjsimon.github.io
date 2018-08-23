@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Dec  2 08:36:02 2017
-
-@author: Simon
 """
 # from lxml_scrapper import *
 from test_scrapper import *
